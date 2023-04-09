@@ -18,6 +18,18 @@ export const postApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     getPosts: builder.query({
       query: () => "/posts",
+      providesTags: (result, error, arg) =>
+        result
+          ? [...result.map(({ id }: any) => ({ type: "Post", id }))]
+          : ["Post"],
+    }),
+    addNewPost: builder.mutation({
+      query: (newPost) => ({
+        url: "/posts",
+        method: "POST",
+        body: newPost,
+      }),
+      invalidatesTags: ['Post']
     }),
   }),
   overrideExisting: false,
@@ -38,5 +50,5 @@ export const postSlice = createSlice({
   },
 });
 
-export const { useGetPostsQuery } = postApiSlice;
+export const { useGetPostsQuery, useAddNewPostMutation } = postApiSlice;
 export default postSlice.reducer;
