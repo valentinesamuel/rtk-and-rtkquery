@@ -7,7 +7,14 @@ import {
 import { useAppSelector } from "./utils/state-dispatch";
 import Switch from "@mui/material/Switch";
 import { useState } from "react";
-import { Box, createTheme } from "@mui/material";
+import {
+  Box,
+  Card,
+  CardContent,
+  CssBaseline,
+  Typography,
+  createTheme,
+} from "@mui/material";
 import Button from "@mui/material/Button";
 const label = { inputProps: { "aria-label": "Color switch demo" } };
 import { darkTheme, lightTheme } from "./utils/theme";
@@ -37,6 +44,7 @@ function App() {
   const res = useAppSelector((state) => state.postSlice);
   return (
     <ThemeProvider theme={UIMode === "dark" ? darkTheme : lightTheme}>
+      <CssBaseline />
       <Box>
         {isFetching && <p>Fetching...</p>}
         <h2>{res.count}</h2>
@@ -55,7 +63,6 @@ function App() {
           sx={{
             color: "success",
           }}
-
           color="default"
           checked={UIMode === "dark" ? true : false}
           onChange={handleChange}
@@ -63,7 +70,7 @@ function App() {
         <Button
           variant="contained"
           sx={{
-            color: `aquagreen`,
+            color: "aquagreen",
           }}
           onClick={onClick}
         >
@@ -71,6 +78,16 @@ function App() {
         </Button>
         {isLoading && <p>Loading...</p>}
         {isError && <p>Error</p>}
+        <Card>
+          <CardContent>
+            <Typography variant="h3" component="h3">
+              valenin.com
+            </Typography>
+            <Typography variant="body1">
+              Dark Mode is {UIMode === "dark" ? "On" : "Off"}
+            </Typography>
+          </CardContent>
+        </Card>
       </Box>
     </ThemeProvider>
   );
