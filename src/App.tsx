@@ -1,14 +1,21 @@
+import { ThemeProvider } from "@mui/material/styles";
 import "./App.css";
 import {
   useAddNewPostMutation,
   useGetPostsQuery,
 } from "./app/features/postSlice";
 import { useAppSelector } from "./utils/state-dispatch";
+import Switch from "@mui/material/Switch";
+import { useState } from "react";
+import { Box, createTheme } from "@mui/material";
+import Button from "@mui/material/Button";
+const label = { inputProps: { "aria-label": "Color switch demo" } };
+import { darkTheme, lightTheme } from "./utils/theme";
 
 function App() {
   const { data, isLoading, isError, isFetching } = useGetPostsQuery("getPosts");
   const [addNewPost, { isSuccess, isUninitialized }] = useAddNewPostMutation();
-  console.log(data);
+  const [UIMode, setUIMode] = useState("dark");
 
   const onClick = async () => {
     const res = await addNewPost({
@@ -21,25 +28,51 @@ function App() {
     console.log(res);
   };
 
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    console.log(UIMode);
+
+    setUIMode(UIMode === "dark" ? "light" : "dark");
+  };
+
   const res = useAppSelector((state) => state.postSlice);
   return (
-    <div className="App">
-      {isFetching && <p>Fetching...</p>}
-      <h2>{res.count}</h2>
-      {JSON.stringify(res)}
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      {/* <h2>{data.count}</h2> */}
-      {/* {data && JSON.stringify(data)} */}
-      {isUninitialized ? <p>has not started</p> : <p>has started</p>}
-      {isSuccess && <p>Sucessfully posted to api</p>}
-      <button onClick={onClick}>Add the new Post</button>
-      {isLoading && <p>Loading...</p>}
-      {isError && <p>Error</p>}
-    </div>
+    <ThemeProvider theme={UIMode === "dark" ? darkTheme : lightTheme}>
+      <Box>
+        {isFetching && <p>Fetching...</p>}
+        <h2>{res.count}</h2>
+        {JSON.stringify(res)}
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        {/* <h2>{data.count}</h2> */}
+        {/* {data && JSON.stringify(data)} */}
+        {isUninitialized ? <p>has not started</p> : <p>has started</p>}
+        {isSuccess && <p>Sucessfully posted to api</p>}
+        <Switch
+          {...label}
+          sx={{
+            color: "success",
+          }}
+
+          color="default"
+          checked={UIMode === "dark" ? true : false}
+          onChange={handleChange}
+        />
+        <Button
+          variant="contained"
+          sx={{
+            color: `aquagreen`,
+          }}
+          onClick={onClick}
+        >
+          Add the new Post
+        </Button>
+        {isLoading && <p>Loading...</p>}
+        {isError && <p>Error</p>}
+      </Box>
+    </ThemeProvider>
   );
 }
 
