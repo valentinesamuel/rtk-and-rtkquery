@@ -18,11 +18,16 @@ import {
 import Button from "@mui/material/Button";
 const label = { inputProps: { "aria-label": "Color switch demo" } };
 import { darkTheme, lightTheme } from "./utils/theme";
+import { useTheme } from "@mui/material";
 
 function App() {
   const { data, isLoading, isError, isFetching } = useGetPostsQuery("getPosts");
   const [addNewPost, { isSuccess, isUninitialized }] = useAddNewPostMutation();
   const [UIMode, setUIMode] = useState("dark");
+const theme = useTheme()
+  console.log(theme
+  );
+
 
   const onClick = async () => {
     const res = await addNewPost({
@@ -52,6 +57,7 @@ function App() {
         <br />
         <br />
         <br />
+        {JSON.stringify(theme.palette.error)}
         <br />
         <br />
         {/* <h2>{data.count}</h2> */}
