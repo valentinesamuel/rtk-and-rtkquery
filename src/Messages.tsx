@@ -9,7 +9,7 @@ const Messages = (props: Props) => {
     <Box>
       {res.map((msg) => {
         return (
-          <Card>
+          <Card sx={{ borderColor: "primary.secondary", margin: "10px" }}>
             <CardContent>
               <Typography variant="h3" component="h3">
                 {msg.sender}
