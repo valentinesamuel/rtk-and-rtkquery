@@ -13,7 +13,6 @@ import {
   CardContent,
   CssBaseline,
   Typography,
-  createTheme,
 } from "@mui/material";
 import Button from "@mui/material/Button";
 const label = { inputProps: { "aria-label": "Color switch demo" } };
