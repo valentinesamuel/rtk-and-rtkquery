@@ -53,7 +53,7 @@ function App() {
         <br />
         <br />
         {/* <h2>{data.count}</h2> */}
-        {/* {data && JSON.stringify(data)} */}
+        {/* {
         {isUninitialized ? <p>has not started</p> : <p>has started</p>}
         {isSuccess && <p>Sucessfully posted to api</p>}
         <Switch
