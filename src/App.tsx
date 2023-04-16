@@ -29,7 +29,7 @@ function App() {
       body: "CHECKMEBODY",
     }).unwrap();
 
-    console.log(res);
+  
   };
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
