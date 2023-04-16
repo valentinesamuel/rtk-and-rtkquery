@@ -52,7 +52,6 @@ function App() {
         {JSON.stringify(theme.palette.error)}
         <br />
         <br />
-        
         {isUninitialized ? <p>has not started</p> : <p>has started</p>}
         {isSuccess && <p>Sucessfully posted to api</p>}
         <Switch
