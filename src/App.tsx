@@ -48,7 +48,6 @@ function App() {
         {JSON.stringify(res)}
         <br />
         <br />
-        <br />
         {JSON.stringify(theme.palette.error)}
         <br />
         <br />
