@@ -15,10 +15,8 @@ const rootReducer = combineReducers({
 
 const persistConfig = {
   key: "root",
-  storage, // uses local storage behind the scenes
+  storage,
 };
-
-// this reducer gets stored in the localStorage so that it is persisted between page reloads.
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 export const store = configureStore({
