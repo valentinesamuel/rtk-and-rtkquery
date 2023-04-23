@@ -29,7 +29,7 @@ function App() {
       body: "CHECKMEBODY",
     }).unwrap();
 
-    console.log(res);
+  
   };
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -48,12 +48,9 @@ function App() {
         {JSON.stringify(res)}
         <br />
         <br />
-        <br />
         {JSON.stringify(theme.palette.error)}
         <br />
         <br />
-        {/* <h2>{data.count}</h2> */}
-        {/* {data && JSON.stringify(data)} */}
         {isUninitialized ? <p>has not started</p> : <p>has started</p>}
         {isSuccess && <p>Sucessfully posted to api</p>}
         <Switch
