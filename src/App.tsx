@@ -1,91 +1,58 @@
-import { ThemeProvider } from "@mui/material/styles";
 import "./App.css";
 import {
   useAddNewPostMutation,
   useGetPostsQuery,
 } from "./app/features/postSlice";
+import Dashboard from "./routes/dashboard/Dashboard";
 import { useAppSelector } from "./utils/state-dispatch";
-import Switch from "@mui/material/Switch";
 import { useState } from "react";
-import { Box, Card, CardContent, CssBaseline, Typography } from "@mui/material";
-import Button from "@mui/material/Button";
 const label = { inputProps: { "aria-label": "Color switch demo" } };
-import { darkTheme, lightTheme } from "./utils/theme";
-import { useTheme } from "@mui/material";
-import Messages from "./Messages";
+import { NavLink, Outlet, Route, Routes } from "react-router-dom";
+import Inventory from "./routes/inventory/Inventory";
+import Supplier from "./routes/supplier/Supplier";
+import { ListDebounceDemo } from "./ListDebounceDemo";
 
 function App() {
-  const { data, isLoading, isError, isFetching } = useGetPostsQuery("getPosts");
-  const [addNewPost, { isSuccess, isUninitialized }] = useAddNewPostMutation();
-  const [UIMode, setUIMode] = useState("dark");
-  const theme = useTheme();
-  console.log(theme);
-
-  const onClick = async () => {
-    const res = await addNewPost({
-      userId: 1,
-      id: 101,
-      title: "CHECK ME TITLE",
-      body: "CHECKMEBODY",
-    }).unwrap();
-
-  
-  };
-
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    console.log(UIMode);
-
-    setUIMode(UIMode === "dark" ? "light" : "dark");
-  };
-
-  const res = useAppSelector((state) => state.postSlice);
   return (
-    <ThemeProvider theme={UIMode === "dark" ? darkTheme : lightTheme}>
-      <CssBaseline />
-      <Box>
-        {isFetching && <p>Fetching...</p>}
-        <h2>{res.count}</h2>
-        {JSON.stringify(res)}
-        <br />
-        <br />
-        {JSON.stringify(theme.palette.error)}
-        <br />
-        <br />
-        {isUninitialized ? <p>has not started</p> : <p>has started</p>}
-        {isSuccess && <p>Sucessfully posted to api</p>}
-        <Switch
-          {...label}
-          sx={{
-            color: "success",
-          }}
-          color="default"
-          checked={UIMode === "dark" ? true : false}
-          onChange={handleChange}
-        />
-        <Button
-          variant="contained"
-          sx={{
-            color: "aquagreen",
-          }}
-          onClick={onClick}
-        >
-          Add the new Post
-        </Button>
-        {isLoading && <p>Loading...</p>}
-        {isError && <p>Error</p>}
-        <Messages />
-        <Card>
-          <CardContent>
-            <Typography variant="h3" component="h3">
-              valenin.com
-            </Typography>
-            <Typography variant="body1">
-              Dark Mode is {UIMode === "dark" ? "On" : "Off"}
-            </Typography>
-          </CardContent>
-        </Card>
-      </Box>
-    </ThemeProvider>
+    <Routes>
+      <Route
+        path="/"
+        element={
+          <>
+            <h1>Routing App</h1>
+            <div>
+              <NavLink style={{ marginRight: ".625rem" }} to="/">
+                Home
+              </NavLink>
+              <NavLink style={{ marginRight: ".625rem" }} to="/supplier">
+                Supplier
+              </NavLink>
+              <NavLink style={{ marginRight: ".625rem" }} to="/inventory">
+                inventory
+              </NavLink>
+            </div>
+            <Outlet />
+          </>
+        }
+      >
+        <Route index element={<Dashboard />} />
+        <Route path="inventory" element={<Inventory />}>
+          <Route index element={<h2>All products</h2>} />
+          <Route path="expired" element={<h2>Expired</h2>} />
+          <Route
+            path="out-of-stock"
+            element={
+              <div>
+                <h2>Out ofstock</h2>
+                <ListDebounceDemo />
+              </div>
+            }
+          />
+          <Route path="low-in-stock" element={<h2>Low in stock</h2>} />
+        </Route>
+        <Route path="supplier" element={<Supplier />} />
+      </Route>
+    </Routes>
   );
 }
 
