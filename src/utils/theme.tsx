@@ -27,7 +27,6 @@ export const darkTheme = createTheme({
   },
 });
 
-
 export const getDesignTokens = (mode: PaletteMode) => ({
   palette: {
     mode,
@@ -54,5 +53,15 @@ export const getDesignTokens = (mode: PaletteMode) => ({
             secondary: grey[500],
           },
         }),
+  },
+  typography: {
+    fontSize: 12,
+    fontFamily: ["'Inter', sans-serif", "'Flavors', cursive"].join(","),
+    h1: {
+      fontSize: "4rem",
+      color: "red",
+      fontWeight: 700,
+      fontFamily: "Flavors",
+    },
   },
 });

@@ -11,7 +11,7 @@ import { ColorModeContext } from "./context/ColorMode.context";
 import { Home } from "./routes/Home/Home";
 
 function App() {
-  const [mode, setMode] = React.useState<PaletteMode>("light");
+  const [mode, setMode] = React.useState<PaletteMode>("dark");
   const colorMode = React.useMemo(
     () => ({
       // The dark mode switch would invoke this method

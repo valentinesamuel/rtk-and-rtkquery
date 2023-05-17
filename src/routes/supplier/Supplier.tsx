@@ -1,7 +1,20 @@
-import React from "react";
+import { Box } from "@mui/material";
+import TimeLine from "./Timeline";
+import MUITable from "./Table";
+import MuiSpeedDial from "./SpeedDial";
+import { MuiRating } from "./Rating";
+import { MuiDialog } from "./Dialog";
 
 const Supplier = () => {
-  return <h1>Supplier</h1>;
+  return (
+    <Box>
+      {/* <TimeLine /> */}
+      {/* <MUITable /> */}
+      {/* <MuiSpeedDial /> */}
+      {/* <MuiRating/> */}
+      <MuiDialog />
+    </Box>
+  );
 };
 
 export default Supplier;

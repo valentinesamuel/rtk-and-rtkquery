@@ -1,9 +1,15 @@
-import { Box, IconButton, useTheme } from "@mui/material";
+import { Box, IconButton, Typography, useTheme, styled } from "@mui/material";
 import { useContext } from "react";
 import { NavLink, Outlet } from "react-router-dom";
 import { ColorModeContext } from "../../context/ColorMode.context";
 import Brightness4Icon from "@mui/icons-material/Brightness4";
 import Brightness7Icon from "@mui/icons-material/Brightness7";
+
+const StyledBox = styled(Box)(({ theme }) => ({
+  height: "250px",
+  width: "250px",
+  backgroundColor: theme.palette.primary.dark,
+}));
 
 export const Home: React.FC = () => {
   const theme = useTheme();
@@ -22,6 +28,7 @@ export const Home: React.FC = () => {
           p: 3,
         }}
       >
+        <Typography variant="h1">asdfg</Typography>
         {theme.palette.mode} mode
         <IconButton
           sx={{ ml: 1 }}
@@ -36,11 +43,26 @@ export const Home: React.FC = () => {
         </IconButton>
       </Box>
       <br />
+      <StyledBox></StyledBox>
       <br />
+      <Box
+        sx={{
+       bgcolor: 'secondary.main',
+          height: "500px",
+          width: {
+            xs: 100,
+            sm: 200,
+            md: 300,
+            lg: 400,
+            xl: 500,
+          },
+        }}
+      ></Box>
       <br />
       <br />
       <h1>{theme.palette.mode}</h1>
       <h1>Routing App</h1>
+
       <div>
         <NavLink style={{ marginRight: ".625rem" }} to="/">
           Home
