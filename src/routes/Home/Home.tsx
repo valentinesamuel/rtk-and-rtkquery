@@ -1,4 +1,6 @@
 import { Box, IconButton, Typography, useTheme, styled } from "@mui/material";
+
+import { styled as StyledComponent } from "styled-components";
 import { useContext } from "react";
 import { NavLink, Outlet } from "react-router-dom";
 import { ColorModeContext } from "../../context/ColorMode.context";
@@ -9,7 +11,16 @@ const StyledBox = styled(Box)(({ theme }) => ({
   height: "250px",
   width: "250px",
   backgroundColor: theme.palette.primary.dark,
+  marginTop: theme.spacing(3),
 }));
+
+const StyledCompBox = StyledComponent(StyledBox)`
+  border-radius: 30px;
+
+  @media screen and (max-width: 450px) {
+    border-radius: 10px;
+  }
+`;
 
 export const Home: React.FC = () => {
   const theme = useTheme();
@@ -44,17 +55,25 @@ export const Home: React.FC = () => {
       </Box>
       <br />
       <StyledBox></StyledBox>
+      <StyledCompBox></StyledCompBox>
       <br />
+      <Typography
+        variant="h1"
+        sx={{
+          fontWeight: 400,
+        }}
+      >
+        asdfg
+      </Typography>
       <Box
         sx={{
-       bgcolor: 'secondary.main',
+          bgcolor: "secondary.main",
           height: "500px",
           width: {
-            xs: 100,
-            sm: 200,
-            md: 300,
-            lg: 400,
-            xl: 500,
+            desktop: 350,
+            laptop: 250,
+            tablet: 150,
+            mobile: 50,
           },
         }}
       ></Box>

@@ -13,6 +13,7 @@ export const lightTheme = createTheme({
       main: "#2A324B",
     },
   },
+
 });
 
 export const darkTheme = createTheme({
@@ -57,11 +58,13 @@ export const getDesignTokens = (mode: PaletteMode) => ({
   typography: {
     fontSize: 12,
     fontFamily: ["'Inter', sans-serif", "'Flavors', cursive"].join(","),
-    h1: {
-      fontSize: "4rem",
-      color: "red",
-      fontWeight: 700,
-      fontFamily: "Flavors",
+  },
+  breakpoints: {
+    values: {
+      mobile: 0,
+      tablet: 640,
+      laptop: 1024,
+      desktop: 1200,
     },
   },
 });
