@@ -25,7 +25,7 @@ function App() {
     const res = await addNewPost({
       userId: 1,
       id: 101,
-      title: "CHECK ME TITLE",
+      title: "CHECK ME OUT TITLE",
       body: "CHECKMEBODY",
     }).unwrap();
 
