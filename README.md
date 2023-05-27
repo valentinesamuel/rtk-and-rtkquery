@@ -1,1 +1,1 @@
-# rtk-and-rtkquery tutorial with mui
+# rtk-and-rtkquery tutorial with Material UI VS
